@@ -305,6 +305,7 @@ return book,pending
 ```
 
 * The program can load the tasks from the file at the beginning. It can save the data after each command. For example, as follows:
+
 ```python
 items = []
 DATA_FILE = 'monty7.csv'
@@ -335,7 +336,9 @@ longer necessary because an accidental exit will not cause any permanent damage.
 exit
 >>> Bye!
 ```
+
 * Add a `pending` command that can mark a task as pending (i.e., the opposite of the `done` command).
+
 ```
  >>> What can I do for you?
  
@@ -365,6 +368,7 @@ exit
  --------------------------------------------------
  >>> What can I do for you?
 ```
+
 * Make commands case insensitive and immune to extra leading/trailing spaces. For example, 
 all these commands should work the same way.
 
