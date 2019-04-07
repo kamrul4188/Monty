@@ -1,0 +1,5 @@
+print('>>> Hello, my name is Monty')
+print('>>> What can I do for you?')
+command = input()
+print(">>> Your command is: " + command)
+print(">>> Bye!")
