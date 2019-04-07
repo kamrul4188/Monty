@@ -7,7 +7,7 @@ import csv
 import sys
 
 items = []
-DATA_FILE = 'monty_11.csv'
+DATA_FILE = 'monty_11.csv' # Todo: need to update CSV
 
 
 class ToDo:
