@@ -167,6 +167,7 @@ else:
     print('✗')
 ```
 💡 You can use exceptions to identify and handle errors in the command.
+
 ```python
 def main():
     print_greeting()
