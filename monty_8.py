@@ -1,11 +1,11 @@
+# ***************************************************
 # Monty weekly project | MD KAMRUZZAMAN | A0107851H
-# *************************************************
-import os
+# **************************************************
 import csv
 import sys
 
 items = []
-DATA_FILE = 'monty_7.csv'
+DATA_FILE = 'monty_8.csv'
 
 
 def print_items():
@@ -14,21 +14,61 @@ def print_items():
 	else:
 		print(">>> Here is the list of tasks:")
 		print('''
-==================================================
-STATUS |  INDEX  |  DESCRIPTION                
--------------------------------------------------- ''')
+==================================================================
+STATUS |  INDEX  | DESCRIPTION                     | DEADLINE               
+------------------------------------------------------------------ ''')
 		for i, item in enumerate(items):
-			if items[i][1]:
-				print('  ✓ ' + '  |    ' + str(i + 1) + '    |  ' + items[i][0])
+			if item['type'] == 'T' and not item['is_done']:
+				print('  ✗ ' + '  |    ' + str(i + 1) + '    |  ' + item['description']
+				      + ' ' * (30 - len(item['description'])) + ' | ' + '-')
+			elif item['type'] == 'T' and item['is_done']:
+				print('  ✓ ' + '  |    ' + str(i + 1) + '    |  ' + item['description']
+				      + ' ' * (30 - len(item['description'])) + ' | ' + '-')
+			elif item['type'] == 'D' and not item['is_done']:
+				print('  ✗ ' + '  |    ' + str(i + 1) + '    |  ' + item['description'] + ' ' * (
+							30 - len(item['description'])) + ' | ' + item['by'])
 			else:
-				print('  ✗ ' + '  |    ' + str(i + 1) + '    |  ' + items[i][0])
-		print('--------------------------------------------------')
+				print('  ✓ ' + '  |    ' + str(i + 1) + '    |  ' + item['description'] + ' ' * (
+							30 - len(item['description'])) + ' | ' + item['by'])
+
+		print('------------------------------------------------------------------')
+
+
+def remove_from_word(text, word):
+	tail_start_position = text.find(word)
+	if tail_start_position != -1:
+		text = text[:tail_start_position]
+		text = text.strip()
+		return text
+	else:
+		raise ValueError('Your command not in correct format')
+
+
+def remove_to_word(text, word):
+	# pass # REPLACE WITH YOUR CODE
+	word_size = len(word) + 1  # world length + a space after word
+	word_start_position = text.find(word)
+
+	if word_start_position != -1:
+		word_tail_position = word_start_position + word_size
+		return text[word_tail_position:]
+	else:
+		raise ValueError('Your command not in correct format')
 
 
 def add_item(user_input):
-	new_input = user_input.split(" ", 1)[1]  # remove first word 'add' from the input
-	items.append([new_input, False])  # Added new items to list
-	print('>>> Task added to the list')
+	action = user_input.split(" ", 1)[0]  # First part of the command
+	command_parts = user_input.split(" ", 1)[1]  # Second part of the command
+
+	if action == 'todo':
+		description = command_parts
+		items.append({'type': 'T', 'description': description, 'is_done': False})
+		print('>>> Task added to the list')
+	elif action == 'deadline':
+		description = remove_from_word(command_parts, 'by:')
+		dateline = remove_to_word(command_parts, 'by:')
+		items.append({'type': 'D', 'description': description, 'is_done': False, 'by': dateline})
+		print('>>> Task added to the list')
 
 
 def delete_item(user_input):
@@ -49,7 +89,7 @@ def done_item(user_input):
 		raise ValueError('Index must be greather than 0')
 	else:
 		try:
-			items[new_input][1] = True  # Task complited
+			items[new_input]['is_done'] = True  # Task complited
 			print('>>> Congrats on completing a task! :-)')
 		except IndexError:
 			raise IndexError('No item at index ' + str(new_input + 1))
@@ -63,7 +103,7 @@ def pending_item(user_input):
 		raise ValueError('Index must be greather than 0')
 	else:
 		try:
-			items[new_input][1] = False  # Task pending
+			items[new_input]['is_done'] = False  # Task pending
 			print('>>> OK, I have marked that item as pending')
 		except IndexError:
 			raise IndexError('No item at index ' + str(new_input + 1))
@@ -107,16 +147,28 @@ def help_monty():
 ==================================================
 Monty can understand the following commands:
 
-add DESCRIPTION 
+todo DESCRIPTION 
     Adds a task to the list
-    Example: add read book
+    Example: todo read book
+
+deadline DESCRIPTION by: DEADLINE
+    Adds a task to the list
+    Example: deadline read book by: tomorrow
+
 done INDEX
     Marks the task at INDEX as 'done'
     Example: done 1
+
+pending INDEX
+	Marks the task at INDEX as 'pending'
+    Example: pending 1
+
 exit
     Exits the application
+
 help_info
     Shows the help_info information
+
 list
      Lists the tasks in the list
 -------------------------------------------------- 
@@ -129,7 +181,7 @@ def execute_command(command):
 		terminate()
 	elif command == 'list':
 		print_items()
-	elif command.startswith('add '):
+	elif command.startswith('todo') or command.startswith('deadline '):
 		add_item(command)
 	elif command.startswith('delete '):
 		delete_item(command)
@@ -164,20 +216,31 @@ def load_data(filename):
 
 
 def add_item_from_csv_line(values):
-	status = True if values[1] == 'done' else False
-	items.append([values[0], status])  # items is a global variable
+	status = True if values[2] == 'done' else False
+
+	if values[0] == 'T':
+		items.append({'type': values[0], 'description': values[1], 'is_done': status})  # items is a global variable
+	else:
+		items.append({'type': values[0], 'description': values[1], 'is_done': status,
+		              'by': values[3]})  # items is a global variable
 
 
 def save_data(filename, items):
 	data_file = open(DATA_FILE, 'w', newline='')
 	output_writer = csv.writer(data_file)
 	for item in items:
-		if item[1]:
-			value = [item[0], 'done']
-			output_writer.writerow(value)
+
+		if item['is_done']:
+			status = 'done'
 		else:
-			value = [item[0], 'pending']
-			output_writer.writerow(value)
+			status = 'pending'
+		if item['type'] == 'T':
+			row = item['type'], item['description'], status
+			output_writer.writerow(row)
+		else:
+			row = item['type'], item['description'], status, item['by']
+			output_writer.writerow(row)
+
 	data_file.close()  # close file
 
 
@@ -194,3 +257,5 @@ def main():
 
 
 main()
+
+

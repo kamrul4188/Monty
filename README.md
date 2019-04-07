@@ -295,7 +295,7 @@ STATUS | INDEX | DESCRIPTION
 
 * The filename can be specified in the code. e.g.,
 ```python
-DATA_FILE = 'monty7.csv'
+DATA_FILE = monty_7.csv
 ```
 * The format of the file is up to you. Here is an example:
 ```
