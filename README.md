@@ -1,10 +1,9 @@
 # The Monty Project
 The project below explains how to build a simple chat bot called Monty, adding functionality in small incremental steps. The weekly project was part of TE3201-Software Engineering (Weekly Project). 
 
-## [Monty 1](monty_1.py)
+## Monty 1:
 
-Write a Python program to read in one user command and repeat it back to the user. An example output is given below.
-
+Write a Python program to read in one user command and repeat it back to the user. An example output is given below. ([Solution](monty_1.py))
 
 ```
 >>> Hello, my name is Monty
@@ -13,8 +12,9 @@ foo
 >>> Your command is: foo
 >>> Bye!
 ```
-## [Monty 2](monty_2.py)
-Extend **Monty 1** code to work as follows:
+
+## Monty 2:
+Extend **Monty 1** code to work as follows. ([Solution](monty_2.py))
 
 ```
 >>> Hello, my name is Monty
@@ -39,8 +39,8 @@ y
 >>> Bye!
 ```
 
-## Monty 3
-Restructure the **Monty 2 code** to fit the following structure, while keeping the behavior same as **Monty 2**.
+## Monty 3: 
+Restructure the **Monty 2 code** to fit the following structure, while keeping the behavior same as **Monty 2**. ([Solution](monty_3.py))
 
 ```python
 import sys
@@ -59,8 +59,8 @@ def main():
 main()
 ```
 
-## Monty 4
-Enhance the **Monty 3 code** to improve the functionality as per the sample output given below.
+## Monty 4: 
+Enhance the **Monty 3 code** to improve the functionality as per the sample output given below. ([Solution](monty_4.py))
 
 ```
 >>> Hello, my name is Monty
@@ -93,14 +93,14 @@ y
 >>> Bye!
 ```
 
-## Monty 5
+## Monty 5: 
 
 Enhance the Monty 4 code in the following ways:
 
 * Add a done command so that the user can mark a task as done. e.g., done 2 marks the task at index 2 as 'done'.
 * Show appropriate error messages if the user gives an invalid index for the done command
 
-A sample output is given below.
+A sample output is given below. ([Solution](monty_5.py))
 
 ```
 >>> Hello, my name is Monty
@@ -179,13 +179,14 @@ def main():
         except Exception as e:
             print('>>> SORRY, I could not perform that command. Problem:', e)
 ```
-## Monty 6
+
+## Monty 6: 
 Enhance the **Monty 5 code** in the following ways:
 
 * Add a help command so that the user can view how to use the app.
 * Improve the formatting of the text displayed to the user to make the user experience nicer.
 
-A sample output is given below.
+A sample output is given below. ([Solution](monty_6.py))
 ```
 *******************************************************************************************
 *  __          __  _                            _          __  __             _           *
@@ -244,16 +245,17 @@ STATUS | INDEX | DESCRIPTION
 >>> What can I do for you?
 ```
 
-## Monty 7
+## Monty 7: 
 Enhance the **Monty 6 code** in the following ways:
 
 * Monty saves tasks into a csv file.
 * Add a delete command that can delete a task at a specific index.
 
-A sample output is given below. Note the following:
+A sample output is given below. Note the following: ([Sotion](monty_7.py))
 
 * Monty is able to show at the very start the three tasks loaded from the file.
-* When item 2 is deleted, the item previously at index 3 moves to position 2.
+* When item 2 is deleted, the item previously at index 3 moves to position 2. 
+
 
 ```
 *******************************************************************************************
@@ -381,7 +383,7 @@ add    read book
     add read book
 ```
 
-## Monty 8
+## Monty 8: 
 Enhance the **Monty 7 code** to add support for keeping track of deadlines as well as regular todo tasks
 
 Previous behavior:
@@ -394,7 +396,7 @@ Proposed change - replace the above command with the following two:
 * deadline return book by: May 3rd adds a deadline return book which is to be done by May 3d.
 Note: by: is a keyword. Anything that comes after it is considered a description of the deadline.
 
-A sample output is given below.
+A sample output is given below. ([Solution](monty_8.py))
 ```
 >>> What can I do for you?
 
@@ -429,10 +431,10 @@ STATUS | INDEX | DESCRIPTION                 | DEADLINE
 >>> What can I do for you?
 ```
 
-## Monty 9
-Enhance the **Monty 8 code** to use classes `ToDo` and `Deadline` (i.e., you need to define these two classes) to represent todo tasks and deadlines, respectively.
+## Monty 9: 
+Enhance the **Monty 8 code** to use classes `ToDo` and `Deadline` (i.e., you need to define these two classes) to represent todo tasks and deadlines, respectively. ([Solution](monty_9.py))
 
-## Monty 10
+## Monty 10: 
 Enhance the Monty 9 code to extract the following classes:
 
 * `UserInterface`: an object of this class can be used to handle reading input from the user and showing output back to the user.
@@ -440,6 +442,9 @@ Enhance the Monty 9 code to extract the following classes:
 * `TaskManager`: an object of this class will hold the list of Task/Deadline objects and will execute commands.
 
 **Optional feature to consider:** add a progress command that shows how many tasks/deadlines were marked as done during a session so far. Here is an example output:
+
+([Solution](monty_10.py))
+
 ```
 >>> What can I do for you?
 
@@ -493,14 +498,18 @@ list
     ------------------------------------------------------------
 >>> What can I do for you?
 ```
-## Monty 11
+## Monty 11: 
 Enhance the **Monty 10 code* to make the `Deadline` class inherit from the `ToDo` class:
+([Solution](monty_11.py))
+
 
 ## Monty 12
 Enhance the **Monty 11 code** to divide the source code into multiple files (e.g., `todo.py`, `deadline.py`, etc.).
+([Solution](monty_12.py))
 
 ## Monty 13
 Add some **unit tests** to **Monty 12 code.**
+([Solution](monty_13.py))
 
 ## Monty 14
 Enhance the **Monty 13 code** to integrate it with the **skeletal GUI** given below.
@@ -511,7 +520,8 @@ Notes about the given version of the GUI:
 * It initializes with some dummy data.
 * It only supports an add command and a help command.
 
-Here are some screenshots of the GUI:
+Here are some screenshots of the GUI: ([Solution](monty_14.py))
+
 ```python
 import datetime
 from tkinter import *
