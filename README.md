@@ -1,4 +1,4 @@
-# The Monty Project :bangladesh: :singapore:
+# The Monty Project :seedling:
 The project below explains how to build a simple chat bot called Monty, adding functionality in small incremental steps. The weekly project was part of TE3201-Software Engineering (Weekly Project). 
 
 ## Monty 1:
