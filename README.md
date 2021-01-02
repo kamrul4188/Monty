@@ -1,11 +1,10 @@
-# The Monty Project 
+# The Monty Project :bangladesh: :singapore:
 The project below explains how to build a simple chat bot called Monty, adding functionality in small incremental steps. The weekly project was part of TE3201-Software Engineering (Weekly Project). 
 
 ## Monty 1:
 
 Write a Python program to read in one user command and repeat it back to the user. An example output is given below. ([Solution](monty_1.py))
 
-:eyes:
 ```
 >>> Hello, my name is Monty
 >>> What can I do for you?
