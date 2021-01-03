@@ -1,11 +1,12 @@
 # The Monty Project :seedling: :man_student:
-The project below explains how to build a simple chat bot called Monty, adding functionality in small incremental steps. The weekly project was part of TE3201-Software Engineering (Weekly Project). 
 
-## Monty 1:
+The project below explains how to build a simple chat bot called Monty, adding functionality in small incremental steps. The weekly project was part of TE3201-Software Engineering (Weekly Project)
+
+## Monty 1
 
 Write a Python program to read in one user command and repeat it back to the user. An example output is given below. ([Solution](monty_1.py))
 
-```
+```conslole
 >>> Hello, my name is Monty
 >>> What can I do for you?
 foo
@@ -13,10 +14,11 @@ foo
 >>> Bye!
 ```
 
-## Monty 2:
+## Monty 2
+
 Extend **Monty 1** code to work as follows. ([Solution](monty_2.py))
 
-```
+```colsole
 >>> Hello, my name is Monty
 >>> What can I do for you?
 
@@ -39,12 +41,12 @@ y
 >>> Bye!
 ```
 
-## Monty 3: 
+## Monty 3
+
 Restructure the **Monty 2 code** to fit the following structure, while keeping the behavior same as **Monty 2**. ([Solution](monty_3.py))
 
 ```python
 import sys
-
 
 # ADD MISSING METHODS
 
@@ -59,10 +61,11 @@ def main():
 main()
 ```
 
-## Monty 4: 
+## Monty 4
+
 Enhance the **Monty 3 code** to improve the functionality as per the sample output given below. ([Solution](monty_4.py))
 
-```
+```console
 >>> Hello, my name is Monty
 >>> What can I do for you?
 
@@ -93,7 +96,7 @@ y
 >>> Bye!
 ```
 
-## Monty 5: 
+## Monty 5
 
 Enhance the Monty 4 code in the following ways:
 
@@ -102,7 +105,7 @@ Enhance the Monty 4 code in the following ways:
 
 A sample output is given below. ([Solution](monty_5.py))
 
-```
+```colsole
 >>> Hello, my name is Monty
 >>> What can I do for you?
 
@@ -157,6 +160,7 @@ y
 
 💡 Each task has two data values: the description and the 'done' status. You can use a list to hold these two data items. 
 That means your list of tasks will be a list containing lists. Example:
+
 ```python
 tasks = []
 tasks.append(['read book', False])
@@ -167,6 +171,7 @@ if tasks[0][1]:
 else:
     print('✗')
 ```
+
 💡 You can use exceptions to identify and handle errors in the command.
 
 ```python
@@ -180,14 +185,16 @@ def main():
             print('>>> SORRY, I could not perform that command. Problem:', e)
 ```
 
-## Monty 6: 
+## Monty 6
+
 Enhance the **Monty 5 code** in the following ways:
 
 * Add a help command so that the user can view how to use the app.
 * Improve the formatting of the text displayed to the user to make the user experience nicer.
 
 A sample output is given below. ([Solution](monty_6.py))
-```
+
+```console
 *******************************************************************************************
 *  __          __  _                            _          __  __             _           *
 *  \ \        / / | |                          | |        |  \/  |           | |          *
@@ -245,7 +252,8 @@ STATUS | INDEX | DESCRIPTION
 >>> What can I do for you?
 ```
 
-## Monty 7: 
+## Monty 7
+
 Enhance the **Monty 6 code** in the following ways:
 
 * Monty saves tasks into a csv file.
@@ -256,8 +264,7 @@ A sample output is given below. Note the following: ([Sotion](monty_7.py))
 * Monty is able to show at the very start the three tasks loaded from the file.
 * When item 2 is deleted, the item previously at index 3 moves to position 2. 
 
-
-```
+```console
 *******************************************************************************************
 *  __          __  _                            _          __  __             _           *
 *  \ \        / / | |                          | |        |  \/  |           | |          *
@@ -294,14 +301,16 @@ STATUS | INDEX | DESCRIPTION
   ✓    |   1   | borrow book                
   ✗    |   2   | return book                  
 --------------------------------------------------
+
 ```
+
 💡 here are some tips:
 
 * The filename can be specified in the code. e.g.,
 `DATA_FILE = monty_7.csv`
 * The format of the file is up to you. Here is an example:
 
-```
+```console 
 borrow book,done
 read book,pending
 return book,pending
@@ -333,7 +342,7 @@ Given below are some more features you can consider adding at this point (it is 
 * Remove the the need for the user to confirm before exiting Monty. As data are saved to a file, such a confirmation is no 
 longer necessary because an accidental exit will not cause any permanent damage.
 
-```
+```console
 >>> What can I do for you?
 
 exit
@@ -342,7 +351,7 @@ exit
 
 * Add a `pending` command that can mark a task as pending (i.e., the opposite of the `done` command).
 
-```
+```console
  >>> What can I do for you?
  
  list
@@ -375,15 +384,16 @@ exit
 * Make commands case insensitive and immune to extra leading/trailing spaces. For example, 
 all these commands should work the same way.
 
-```
+```console
 add read book
 ADD read book
 Add read book
-add    read book
-    add read book
+add read book
+add read book
 ```
 
-## Monty 8: 
+## Monty 8
+
 Enhance the **Monty 7 code** to add support for keeping track of deadlines as well as regular todo tasks
 
 Previous behavior:
@@ -397,7 +407,8 @@ Proposed change - replace the above command with the following two:
 Note: by: is a keyword. Anything that comes after it is considered a description of the deadline.
 
 A sample output is given below. ([Solution](monty_8.py))
-```
+
+```console
 >>> What can I do for you?
 
 list
@@ -431,10 +442,12 @@ STATUS | INDEX | DESCRIPTION                 | DEADLINE
 >>> What can I do for you?
 ```
 
-## Monty 9: 
+## Monty 9
+
 Enhance the **Monty 8 code** to use classes `ToDo` and `Deadline` (i.e., you need to define these two classes) to represent todo tasks and deadlines, respectively. ([Solution](monty_9.py))
 
-## Monty 10: 
+## Monty 10
+
 Enhance the Monty 9 code to extract the following classes:
 
 * `UserInterface`: an object of this class can be used to handle reading input from the user and showing output back to the user.
@@ -445,7 +458,7 @@ Enhance the Monty 9 code to extract the following classes:
 
 ([Solution](monty_10.py))
 
-```
+```console
 >>> What can I do for you?
 
 list
@@ -497,21 +510,26 @@ list
       ✓    |   3   | return book                 | Monday
     ------------------------------------------------------------
 >>> What can I do for you?
+
 ```
-## Monty 11: 
+
+## Monty 11
+
 Enhance the **Monty 10 code* to make the `Deadline` class inherit from the `ToDo` class:
 ([Solution](monty_11.py))
 
-
 ## Monty 12
+
 Enhance the **Monty 11 code** to divide the source code into multiple files (e.g., `todo.py`, `deadline.py`, etc.).
 ([Solution](monty_12.py))
 
 ## Monty 13
+
 Add some **unit tests** to **Monty 12 code.**
 ([Solution](monty_13.py))
 
 ## Monty 14
+
 Enhance the **Monty 13 code** to integrate it with the **skeletal GUI** given below.
 
 Notes about the given version of the GUI:
@@ -626,4 +644,3 @@ class TaskManager:
 
 GUI(TaskManager()).start()
 ```
-
